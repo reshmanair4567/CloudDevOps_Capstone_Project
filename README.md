@@ -19,8 +19,8 @@ for example - my bash profile settings for AWS
 aws_reshma() {
     unset AWS_SESSION_TOKEN
     unset AWS_SECURITY_TOKEN
-    export AWS_ACCESS_KEY_ID='AKIAUOCSIGNMHZ2LLYTD'
-    export AWS_SECRET_ACCESS_KEY='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'
+    export AWS_ACCESS_KEY_ID=''
+    export AWS_SECRET_ACCESS_KEY=''
     echo "aws profile switched to resh account"
 }
 
