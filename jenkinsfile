@@ -1,0 +1,36 @@
+#!/usr/bin/env groovy
+
+pipeline {
+    agent {
+        label 'any'
+    }
+
+    options {
+      disableConcurrentBuilds()
+      buildDiscarder(logRotator(numToKeepStr: '5'))
+   }
+   
+    stages {
+        stage('clone repo') {
+            steps {
+                sh "rm -rf /var/jenkins_home/workspace/demo/CloudDevOps_Capstone_Project"
+                sh "git clone https://github.com/reshmanair4567/CloudDevOps_Capstone_Project.git"
+            }
+        }
+        stage('kubectl contexts') {
+            steps {
+                sh "kubectl get pods"
+            }
+        }
+        stage('kubectl nginx deployment') {
+            steps {
+                sh "kubectl apply -f CloudDevOps_Capstone_Project/nginx-deployment.yaml"
+            }
+        }
+        stage('kubectl rollout status') {
+            steps {
+                sh "kubectl --namespace=default rollout status deployments/nginx"
+            }
+        }
+    }
+ }
