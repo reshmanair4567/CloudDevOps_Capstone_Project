@@ -12,4 +12,4 @@ Linting is added as a step in Jenkins Pipeline
 
 
 Pipeline Structure:
-Start > Clone repository > kubectl contexts > kubectl nginx deployment > kubectl rollout status > End
+Start > Clone repository > Linting > kubectl contexts > kubectl nginx deployment > kubectl rollout status > End
