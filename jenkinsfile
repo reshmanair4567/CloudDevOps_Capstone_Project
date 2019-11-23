@@ -1,20 +1,19 @@
-#!/usr/bin/env groovy
-
 pipeline {
     agent {
-        label 'any'
+        label 'master'
     }
-
-    options {
-      disableConcurrentBuilds()
-      buildDiscarder(logRotator(numToKeepStr: '5'))
-   }
-   
     stages {
-        stage('clone repo') {
+        stage('Clone Repository') {
             steps {
-                sh "rm -rf /var/jenkins_home/workspace/demo/CloudDevOps_Capstone_Project"
+                sh "rm -rf /var/jenkins_home/workspace/nginx-rollout-deployment/CloudDevOps_Capstone_Project"
                 sh "git clone https://github.com/reshmanair4567/CloudDevOps_Capstone_Project.git"
+                sh "sleep 30"
+                
+            }
+        }
+        stage('Linting') {
+            steps {
+                sh "dockerfile_lint -f /var/jenkins_home/workspace/nginx-rollout-deployment/CloudDevOps_Capstone_Project/Dockerfile"
             }
         }
         stage('kubectl contexts') {
